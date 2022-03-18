@@ -1,6 +1,6 @@
 const express = require('express');
 
-const { create, getAll } = require('../controllers/user.controller');
+const { create, getAll, getById } = require('../controllers/user.controller');
 const { nameValidate, passwordValidate, emailValidate, authValidate } = require('../middlewares');
 
 const router = express.Router();
@@ -17,6 +17,12 @@ router.get(
   '/',
   authValidate,
   getAll,
+);
+
+router.get(
+  '/:id',
+  authValidate,
+  getById,
 );
 
 module.exports = router;
