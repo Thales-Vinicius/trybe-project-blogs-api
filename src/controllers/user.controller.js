@@ -1,4 +1,5 @@
 const userService = require('../services/user.service');
+const jwtGenerator = require('../helpers/jwtGenerator');
 
 const create = async (req, res) => {
   try {
@@ -8,7 +9,20 @@ const create = async (req, res) => {
 
     if (!user) return res.status(409).json({ message: 'User already registered' });
 
-    return res.status(201).json({ user });
+    const token = jwtGenerator(user);
+
+    return res.status(201).json({ token });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json(error);
+  }
+};
+
+const getAll = async (req, res) => {
+  try {
+    const allUsers = await userService.getAll();
+
+    return res.status(200).json(allUsers);
   } catch (error) {
     console.log(error);
     return res.status(500).json(error);
@@ -17,4 +31,5 @@ const create = async (req, res) => {
 
 module.exports = {
   create,
+  getAll,
 };
