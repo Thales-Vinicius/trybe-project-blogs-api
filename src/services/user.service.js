@@ -2,7 +2,6 @@ const { User } = require('../models');
 const jwtGenerator = require('../helpers/jwtGenerator');
 
 const create = async (displayName, email, password, image) => {
-  console.log(email);
   const emailExist = await User.findOne({ where: { email } });
 
   if (emailExist) return null;
