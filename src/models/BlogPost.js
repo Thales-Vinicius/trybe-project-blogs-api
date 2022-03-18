@@ -48,4 +48,6 @@ module.exports = (sequelize) => {
   BlogPost.associate = (models) => {
     BlogPost.belongsTo(models.User, { foreingKey: 'userId', as: 'user' });
   };
+
+  return BlogPost;
 };

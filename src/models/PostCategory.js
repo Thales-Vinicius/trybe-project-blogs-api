@@ -18,4 +18,6 @@ module.exports = (sequelize) => {
       { foreignKey: 'categoryId', otherKey: 'postId', through: PostCategory, as: 'blogPosts' },
     );
   };
+
+  return PostCategory;
 };
