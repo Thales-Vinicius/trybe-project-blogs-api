@@ -1,4 +1,5 @@
 const loginService = require('../services/login.service');
+const jwtGenerator = require('../helpers/jwtGenerator');
 
 const login = async (req, res) => {
   try {
@@ -8,7 +9,9 @@ const login = async (req, res) => {
 
     if (!userLogin) return res.status(400).json({ message: 'Invalid fields' });
 
-    return res.status(200).json({ userLogin });
+    const token = jwtGenerator(userLogin);
+
+    return res.status(200).json({ token });
   } catch (error) {
     console.log(error);
     return res.status(500).json(error);
