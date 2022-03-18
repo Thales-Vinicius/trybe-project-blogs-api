@@ -1,5 +1,5 @@
 const { User } = require('../models');
-const jwtGenerator = require('../helpers/jwtGenerator');
+// const jwtGenerator = require('../helpers/jwtGenerator');
 
 const login = async (email, password) => {
   const emailExist = await User.findOne({ where: { email } });
@@ -7,8 +7,10 @@ const login = async (email, password) => {
   if (!emailExist) return null;
 
   if (emailExist.password !== password) return null;
+
+  const tokenData = { id: emailExist.id, displayName: emailExist.displayName, email };
   
-  const tokenData = jwtGenerator({ id: emailExist.id, displayName: emailExist.displayName, email });
+  // const tokenData = jwtGenerator({ id: emailExist.id, displayName: emailExist.displayName, email });
 
   return tokenData;
 };
