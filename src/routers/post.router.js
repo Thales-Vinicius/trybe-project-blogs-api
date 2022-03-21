@@ -1,6 +1,6 @@
 const express = require('express');
 
-const { create, getAll, getById } = require('../controllers/post.controller');
+const { create, getAll, getById, update } = require('../controllers/post.controller');
 const { authValidate, postValidate } = require('../middlewares');
 
 const router = express.Router();
@@ -23,6 +23,12 @@ router.get(
 
   authValidate,
   getById,
+);
+
+router.put(
+  '/:id',
+  authValidate,
+  update,
 );
 
 module.exports = router;

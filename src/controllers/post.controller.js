@@ -42,8 +42,23 @@ const getById = async (req, res) => {
   }
 };
 
+const update = async (req, res) => {
+  try {
+    const { title, content } = req.body;
+    const { id } = req.params;
+
+    const updatedPost = await postService.updatePost(id, title, content);
+
+    return res.status(200).json(updatedPost);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json(error);
+  }
+};
+
 module.exports = {
   create,
   getAll,
   getById,
+  update,
 };
