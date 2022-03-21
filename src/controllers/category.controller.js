@@ -1,4 +1,4 @@
-const categoryServeice = require('../services/category.service');
+const categoryService = require('../services/category.service');
 
 const create = async (req, res) => {
   try {
@@ -6,7 +6,7 @@ const create = async (req, res) => {
 
     if (!name) return res.status(400).json({ message: '"name" is required' });
 
-    const category = await categoryServeice.create(name);
+    const category = await categoryService.create(name);
 
     if (!category) return res.status(409).json({ message: 'Category already registered' });
 
@@ -19,7 +19,7 @@ const create = async (req, res) => {
 
 const getAll = async (req, res) => {
   try {
-    const allCategories = await categoryServeice.getAll();
+    const allCategories = await categoryService.getAll();
   
     return res.status(200).json(allCategories);    
   } catch (error) {
