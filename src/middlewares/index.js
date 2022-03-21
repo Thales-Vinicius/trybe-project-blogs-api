@@ -3,6 +3,7 @@ const nameValidate = require('./nameValidate');
 const emailValidate = require('./emailValidate');
 const passwordValidate = require('./passwordValidate');
 const postValidate = require('./postValidate');
+const updateValidate = require('./updateValidate');
 
 module.exports = {
    authValidate,
@@ -10,4 +11,5 @@ module.exports = {
    emailValidate,
    passwordValidate,
    postValidate,
+   updateValidate,
 };

@@ -61,9 +61,18 @@ const getById = async (id) => {
 
 const updatePost = async (id, title, content) => {
   const updated = new Date();
-  await BlogPost.update(title, content, updated, { where: { id } });
+  await BlogPost.update({ title, content, updated }, { where: { id } });
 
-  const updatedPost = await BlogPost.findByPk(id);
+  const updatedPost = await BlogPost.findByPk(id, { 
+    attributes: { 
+      exclude: ['id', 'published', 'updated', 'UserId'],
+    },
+    include: [{
+      model: Category,
+      as: 'categories',
+      through: { attributes: [] },
+    }],
+  });
 
   return updatedPost;
 };

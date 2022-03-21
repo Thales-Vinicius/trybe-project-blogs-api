@@ -1,7 +1,7 @@
 const express = require('express');
 
 const { create, getAll, getById, update } = require('../controllers/post.controller');
-const { authValidate, postValidate } = require('../middlewares');
+const { authValidate, postValidate, updateValidate } = require('../middlewares');
 
 const router = express.Router();
 
@@ -28,6 +28,7 @@ router.get(
 router.put(
   '/:id',
   authValidate,
+  updateValidate,
   update,
 );
 
